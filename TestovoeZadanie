@@ -12,65 +12,70 @@ public class Main {
         String A = arraySimvilov[0];
         try {
             String znak = arraySimvilov[1];
-//            throw new ArrayIndexOutOfBoundsException();
-        }catch (ArrayIndexOutOfBoundsException e){
+            String B = arraySimvilov[2];
+            int yazikA = romanOrArabic(A);
+            int yaziB = romanOrArabic(B);
+            if ((yazikA == 2) && (yaziB == 2)) {
+                int AInt = Integer.parseInt(A);
+                int BInt = Integer.parseInt(B);
+                int rezultat = vichislit(AInt, znak, BInt);
+                System.out.println(rezultat);
+            } else if ((yazikA == 1) && (yaziB == 1)) {
+                int A2 = fromRomanToArab(A);
+                int B2 = fromRomanToArab(B);
+                int rezultat = vichislit(A2, znak, B2);
+                if (rezultat < 0) {
+                    try {
+                        throw new Exception();
+                    } catch (Exception e) {
+                        System.out.println("В римской системе счисления нет отрицательных чисел");
+                    }
+                }
+                switch (rezultat) {
+                    case (1):
+                        System.out.println("I");
+                        break;
+                    case (2):
+                        System.out.println("II");
+                        break;
+                    case (3):
+                        System.out.println("III");
+                        break;
+                    case (4):
+                        System.out.println("IV");
+                        break;
+                    case (5):
+                        System.out.println("V");
+                        break;
+                    case (6):
+                        System.out.println("VI");
+                        break;
+                    case (7):
+                        System.out.println("VII");
+                        break;
+                    case (8):
+                        System.out.println("VIII");
+                        break;
+                    case (9):
+                        System.out.println("IX");
+                        break;
+                    case (10):
+                        System.out.println("X");
+                        break;
+                }
+            } else {
+                try {
+                    throw new IOException();
+                } catch (IOException e) {
+                    System.out.println("Используются одновременно разные системы счисления");
+                }
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
 
             System.out.println("Строка не является математической операцией");
         }
-        String znak = arraySimvilov[1];
-        String B = arraySimvilov[2];
-        int yazikA = romanOrArabic(A);
-        int yaziB = romanOrArabic(B);
-        if ((yazikA == 2) && (yaziB == 2)) {
-            int AInt = Integer.parseInt(A);
-            int BInt = Integer.parseInt(B);
-            int rezultat = vichislit(AInt, znak, BInt);
-            System.out.println(rezultat);
-        } else if ((yazikA == 1) && (yaziB == 1)) {
-            int A2 = fromRomanToArab(A);
-            int B2 = fromRomanToArab(B);
-            int rezultat = vichislit(A2, znak, B2);
-            switch (rezultat) {
-                case (1):
-                    System.out.println("I");
-                    break;
-                case (2):
-                    System.out.println("II");
-                    break;
-                case (3):
-                    System.out.println("III");
-                    break;
-                case (4):
-                    System.out.println("IV");
-                    break;
-                case (5):
-                    System.out.println("V");
-                    break;
-                case (6):
-                    System.out.println("VI");
-                    break;
-                case (7):
-                    System.out.println("VII");
-                    break;
-                case (8):
-                    System.out.println("VIII");
-                    break;
-                case (9):
-                    System.out.println("IX");
-                    break;
-                case (10):
-                    System.out.println("X");
-                    break;
-            }
-        } else {
-            try {
-                throw new IOException();
-            }catch (IOException e){
-                System.out.println("Используются одновременно разные системы счисления");}
-        }
-
     }
-
     static int vichislit(int A, String znakStr, int B) {
         int rezultat = 0;
         switch (znakStr) {
